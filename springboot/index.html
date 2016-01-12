@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Java Web Tutorial</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans);
+
+body { font-family: 'Open Sans Condensed','Droid Serif','Open Sans', sans-serif; }
+h1, h2, h3, h4 {
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: 400;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+h1 { font-size: 3.5em; }
+h2 { font-size: 3em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1em; }
+.inverse {
+    background: #272822;
+    color: #777872;
+    text-shadow: 0 0 20px #333;
+}
+.inverse h1, .inverse h2 {
+    color: #f3f3f3;
+    line-height: 0.8em;
+}
+
+code { font-family: 'Ubuntu Mono', sans-serif !important; }
+pre code { background-color: #fff; border-top: 5px solid #ddd; border-bottom: 5px solid #ddd; margin-top: 10px;}
+h1 code { font-weight: 300; font-size: 1em !important; background-color: #eee; padding: 0px 5px; border-radius: 5px; }
+
+a {
+    color: #F92672;
+    text-decoration: none;
+}
+.task {
+    float: right;
+    font-size: 0.9em;
+    padding-top: 0.6em;
+}
+.task a {
+    color: #080;
+    text-decoration: none;
+}
+.right {
+    float: right;
+    margin-left: 1em;
+}
+.pushdown {
+    margin-top: 12em;
+}
+
+.done-true {
+  text-decoration: line-through;
+  color: grey;
+}
+
+ul.unstyled,ol.unstyled{margin-left:0;list-style:none;}
+
+.remark-visible .remark-slide-scaler {
+  overflow-y: auto;
+}
+
+.nopadding { padding:0 !important;}
+
+.red    { color: #FF4943; }
+.gray   { color: #787878; }
+.green  { color: #87A558; }
+.blue   { color: #41C8F0; }
+.yellow { color: #DBEC62; }
+.white  { color: #FFFFFF; }
+.or1 {color: #FFD740;}
+.bluelight {color: #B3E5FC;}
+.dark1 {color: #B6B6B6;}
+
+.bold { font-weight: bold; }
+
+pre {
+  background-color: transparent ; 
+  border: 0 ; 
+  border-radius: 0 ;
+  padding: 10px 0; 
+}
+.remark-code {
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.remark-code-line-highlighted {
+  font-weight: bold;
+  background-color: transparent;
+  text-shadow: 
+      0px 10px 30px rgba(255, 98, 20, .5),
+      10px 0px 30px rgba(255, 98, 20, .5),
+      -10px 0px 30px rgba(255, 98, 20, .5),
+      0px -10px 30px rgba(255, 98, 20, .5);
+}
+.reverse .remark-code-line-highlighted {
+    font-weight: normal !important;
+    color: transparent;
+    text-shadow: 0 0 5px #000;
+    font-size: 1em;
+}
+.reverse .remark-code-line { font-weight: bold; }
+
+.shade {
+    padding: 0;
+}
+
+.shade  {
+    background-color:rgba(0,0,0,0.7);
+    color: white;
+    width: 100%;
+    padding: 1em 0;
+}
+
+.shadelight  {
+    background-color:rgba(0,0,0,0.5);
+    color: white;
+    width: 100%;
+    padding: 0;
+}
+
+.fgtransparent h1 {
+  color:rgba(255,255,255,0.8) !important;
+  text-shadow: none;
+  text-align: right;
+}
+
+.nosplit>div:first-of-type {width: 100%; height:100%; position: absolute; top: 0; left: 0; }
+.split-30>div:first-of-type {width: 30%; height:100%; position: absolute; top: 0; left: 0; }
+.split-30>div:nth-of-type(2) {width: 70%; height:100%; position: absolute; top: 0; right: 0;}
+.split-50>div:first-of-type {width: 50%; height:100%; position: absolute; top: 0; left: 0; }
+.split-50>div:nth-of-type(2) {width: 50%; height:100%; position: absolute; top: 0; right: 0;}
+.split-60>div:first-of-type {width: 60%; height:100%; position: absolute; top: 0; left: 0;}
+.split-60>div:nth-of-type(2) {width: 40%; height:100%; position: absolute; top: 0; right: 0;}
+.split-70>div:first-of-type {width: 70%; height:100%; position: absolute; top: 0; left: 0; }
+.split-70>div:nth-of-type(2) {width: 30%; height:100%; position: absolute; top: 0; right: 0;}
+.column_t1 {
+  background-color: #2aa9df;
+  color: white;
+}
+.column_t1 a {color: #B3E5FC;}
+.column_t1 pre code {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+}
+.column_t2 {
+}
+
+.uline {text-decoration: underline;}
+
+.vmiddle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding:1em;
+}
+.pushfront {
+    z-index: 2;   
+}
+.remark-slide-content .vmiddle h1 {margin-top: 0;}
+
+.boxtitle1 {
+  padding:1em;
+  text-align: left;
+  border-left: white solid 0.5em;
+  border-right: white solid 0em;
+}
+
+.boxtitle2 {
+  padding:1em;
+  text-align: center;
+  border-left: white solid 0em;
+  border-right: white solid 0.5em;
+}
+
+.figplain img {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: #eee solid 20px;
+  border-bottom: #eee solid 20px;
+}
+.noborder img {border:none !important;}
+
+.figstyle1 img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  width: 100%;
+}
+.figstyle1h img {
+  -webkit-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 55px 0px rgba(0,0,0,0.75);  
+  max-width: 100%;
+  max-height: 600px;
+}
+.figstyle1h {}
+
+.tab1 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab1 table td, .tab1 table th {
+  border: 1px solid white;
+  padding: 0.25em 1em;
+  }
+
+.tab1 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+} 
+.fullwidth, .fullwidth table {width: 100% !important;}
+.fullheight {max-height: 100% !important;}
+
+.tab2 table {
+  background: rgba(255, 255, 255, 0.12);
+  border: 4px solid #eeeeee;
+  margin: 0px auto;
+  border-collapse:collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+
+.tab2 table td, .tab2 table th {
+  border: 1px solid #eee;
+  padding: 0.25em 1em;
+  }
+
+.tab2 table th {
+  opacity: 1;
+  background-color:#ff6600;
+  vertical-align:middle;
+}  
+.fonth2 {font-size: 3em;}
+.fonth3 {font-size: 2.4em;}
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://eueung.github.io/EL5244/mfizz22/font-mfizz.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+### Java - Web
+# Spring Boot + JHipster
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/java/springboot
+#### Java CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+---
+class: column_t1 middle
+
+.fonth3[
+.tab1.fullwidth[
+| Agenda   |
+|:-------------:|
+| Spring Boot|
+| JHipster|
+]]
+
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Spring Boot #1
+### [Spring Boot](http://projects.spring.io/spring-boot/) @ spring.io
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+*   <groupId>com.example</groupId>
+*   <artifactId>myproject</artifactId>
+*   <version>0.0.1-SNAPSHOT</version>
+
+*   <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.1.RELEASE</version>
+*   </parent>
+
+    <dependencies>
+*       <dependency>
+*           <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-starter-web</artifactId>
+*       </dependency>
+    </dependencies>
+
+</project>
+```
+.center[pom.xml]
+
+]]
+.column_t1[.vmiddle[
+# Example #1
+### Maven
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #1
+
+]]
+.column_t2[.vmiddle[
+
+```
+import org.springframework.boot.*;
+import org.springframework.boot.autoconfigure.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+
+*@Controller
+*@EnableAutoConfiguration
+public class SampleController {
+
+*   @RequestMapping("/")
+*   @ResponseBody
+    String home() {
+        return "Hello World!";
+    }
+
+    public static void main(String[] args) throws Exception {
+*       SpringApplication.run(SampleController.class, args);
+    }
+}
+```
+.center[src/main/java/**SampleController.java**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+import org.springframework.boot.*;
+import org.springframework.boot.autoconfigure.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
+
+*@RestController
+@EnableAutoConfiguration
+public class Example {
+
+    @RequestMapping("/")
+    String home() {
+        return "Hello World!";
+    }
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Example.class, args);
+    }
+
+}
+```
+
+]]
+.column_t1[.vmiddle[
+# Example #1
+### .yellow[Alternative]
+
+]]
+
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# Example #1
+### Maven
+
+```bash
+
+*$> mvn spring-boot:run
+
+```
+
+]]
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig01.jpg)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #1
+### .bluelight[Gradle]
+
+```bash
+$> gradle build
+
+*$> gradle bootRun
+```
+
+
+
+]]
+.column_t2[.vmiddle[
+
+```
+*buildscript {
+  ext {
+    springBootVersion = '1.3.1.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+  }
+*}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot' 
+
+jar {
+  baseName = 'demo'
+  version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+* compile('org.springframework.boot:spring-boot-starter-web')
+}
+```
+.center[build.gradle]
+
+]]
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Spring Boot #2
+### [Building an Application with Spring Boot](http://spring.io/guides/gs/spring-boot/)
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+*package hello;
+
+import java.util.Arrays;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+*@SpringBootApplication
+public class Application {
+    
+    public static void main(String[] args) {
+*       ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        
+*       System.out.println("Let's inspect the beans provided by Spring Boot:");
+        
+        String[] beanNames = ctx.getBeanDefinitionNames();
+        Arrays.sort(beanNames);
+        for (String beanName : beanNames) {
+*           System.out.println(beanName);
+        }
+    }
+
+}
+```
+.center[src/main/java/**hello**/**Application.java**]
+
+]]
+.column_t1[.vmiddle[
+# Example #2
+### gs-spring-boot
+
+```
+*package hello;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+*@RestController
+public class HelloController {
+    
+*   @RequestMapping("/")
+    public String index() {
+        return "Greetings from Spring Boot!";
+    }
+    
+}
+```
+
+.center[src/main/java/**hello**/**HelloController.java**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #2
+### Maven
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+*           <artifactId>maven-failsafe-plugin</artifactId>
+            <executions>
+                <execution>
+                    <goals>
+*                       <goal>integration-test</goal>
+*                       <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+.center[pom.xml]
+
+]]
+.column_t2[.vmiddle[
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework</groupId>
+    <artifactId>gs-spring-boot</artifactId>
+    <version>0.1.0</version>
+*   <parent>
+        <groupId>org.springframework.boot</groupId>
+*       <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.1.RELEASE</version>
+*   </parent>
+*   <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+*   </dependencies>
+    <properties> <java.version>1.8</java.version> </properties>
+*   <build> ... </build>
+</project>
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```bash
+*$> mvn package && java -jar target/gs-spring-boot-0.1.0.jar
+...
+Let's inspect the beans provided by Spring Boot:
+application
+...
+viewControllerHandlerMapping
+
+*$> curl localhost:8080
+Greetings from Spring Boot!
+```
+
+.figstyle1[
+![](images/fig02.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+# Example #2
+### Maven
+#### &nbsp;
+
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #2
+### .bluelight[Gradle]
+
+```bash
+
+*$> gradle wrapper
+
+*$> ./gradlew build && java -jar build/libs/gs-spring-boot-0.1.0.jar
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+buildscript {
+    repositories { mavenCentral() }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+*   compile("org.springframework.boot:spring-boot-starter-actuator")
+*   testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+*task wrapper(type: Wrapper) {
+*   gradleVersion = '2.10'
+*}
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+# Example #2
+### Unit Tests
+
+```
+package hello;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+```
+
+]]
+.column_t1[.vmiddle[
+
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+*@SpringApplicationConfiguration(classes = MockServletContext.class)
+@WebAppConfiguration
+public class HelloControllerTest {
+
+* private MockMvc mvc;
+
+  @Before
+  public void setUp() throws Exception {
+*   mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
+  }
+
+  @Test
+  public void getHello() throws Exception {
+*   mvc.perform(MockMvcRequestBuilders.get("/").accept(MediaType.APPLICATION_JSON))
+*       .andExpect(status().isOk())
+*       .andExpect(content().string(equalTo("Greetings from Spring Boot!")));
+  }
+}
+```
+.center[src/**test**/java/hello/**HelloControllerTest.java**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #2
+### Integration Test
+
+```
+package hello;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
+import java.net.URL;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.TestRestTemplate;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.client.RestTemplate;
+```
+
+]]
+.column_t2[.vmiddle[
+
+```
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Application.class)
+@WebAppConfiguration
+*@IntegrationTest({"server.port=0"})
+public class HelloControllerIT {
+
+*   @Value("${local.server.port}")
+    private int port;
+
+* private URL base;
+* private RestTemplate template;
+
+  @Before
+  public void setUp() throws Exception {
+*   this.base = new URL("http://localhost:" + port + "/");
+*   template = new TestRestTemplate();
+  }
+
+  @Test
+  public void getHello() throws Exception {
+*   ResponseEntity<String> response = template.getForEntity(base.toString(), String.class);
+*   assertThat(response.getBody(), equalTo("Greetings from Spring Boot!"));
+  }
+}
+```
+
+.center[src/**test**/java/hello/**HelloControllerIT.java**]
+
+]]
+
+---
+class: column_t1
+
+# Refs/Notes
+
+1. [Getting Started · Building an Application with Spring Boot](http://spring.io/guides/gs/spring-boot/)
+1. [spring-guides/gs-spring-boot](https://github.com/spring-guides/gs-spring-boot)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# Spring Boot #3
+### [Building a RESTful Web Service](http://spring.io/guides/gs/rest-service/)
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+package hello;
+
+import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+*@RestController
+public class GreetingController {
+
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
+
+*   @RequestMapping("/greeting")
+    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Greeting(counter.incrementAndGet(),
+                            String.format(template, name));
+    }
+}
+```
+
+.center[src/**main**/java/hello/**GreetingController.java**]
+
+]]
+.column_t1[.vmiddle[
+# Example #3
+### gs-rest-service
+
+```
+package hello;
+
+public class Greeting {
+    private final long id;
+    private final String content;
+
+    public Greeting(long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+}
+```
+
+.center[src/**main**/java/hello/**Greeting.java**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #3
+#### &nbsp;
+
+.figstyle1[
+![](images/fig03.jpg)
+]
+
+.figstyle1[
+![](images/fig04.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+
+```
+package hello;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+*@SpringBootApplication
+public class Application {
+
+    public static void main(String[] args) {
+*       SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+.center[src/**main**/java/hello/**Application.java**]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.springframework</groupId>
+    <artifactId>gs-rest-service</artifactId>
+    <version>0.1.0</version>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+*       <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.3.1.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <properties> <java.version>1.8</java.version> </properties>
+
+*   <build>...</build>
+*   <repositories>...</repositories>
+*   <pluginRepositories>...</pluginRepositories>
+</project>
+
+```
+
+.center[**pom.xml**]
+
+]]
+.column_t1[.vmiddle[
+# Example #3
+### Maven
+
+```xml
+*<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+*           <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+*</build>
+*<repositories>
+    <repository>
+        <id>spring-releases</id>
+        <url>https://repo.spring.io/libs-release</url>
+    </repository>
+*</repositories>
+*<pluginRepositories>
+    <pluginRepository>
+        <id>spring-releases</id>
+        <url>https://repo.spring.io/libs-release</url>
+    </pluginRepository>
+*</pluginRepositories>
+```
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+# Example #3
+### Maven
+
+```bash
+*$> mvn clean package
+$> java -jar target/gs-rest-service-0.1.0.jar
+
+# or
+*$> mvn spring-boot:run
+```
+
+]]
+.column_t2[.vmiddle[
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```
+buildscript {
+    repositories { mavenCentral() }
+    dependencies {
+*       classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-rest-service'
+    version =  '0.1.0'
+}
+
+repositories { mavenCentral() }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+*   compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+```
+
+.center[**build.gradle**]
+
+]]
+.column_t1[.vmiddle[
+# Example #3
+### .bluelight[Gradle]
+
+```bash
+*$> gradle build
+*$> java -jar build/libs/gs-rest-service-0.1.0.jar
+
+# or local
+$> gradle wrapper
+$> gradlew build
+$> java -jar build/libs/gs-rest-service-0.1.0.jar
+```
+
+]]
+
+---
+class: column_t1
+
+# Refs/Notes
+
+1. [Getting Started · Building a RESTful Web Service](http://spring.io/guides/gs/rest-service/)
+1. [spring-guides/gs-rest-service](https://github.com/spring-guides/gs-rest-service)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# JHipster
+### [JHipster](http://jhipster.github.io/) Yeoman Generator
+]]
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+```bash
+
+*$> yo jhipster
+
+```
+
+.figstyle1[
+![](images/fig05.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+# Example #4
+### Scaffolding via JHipster
+
+```bash
+npm install -g yo
+npm install -g bower
+npm install -g grunt-cli
+
+*npm install -g generator-jhipster
+```
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t1[.vmiddle[
+## Notes
+### For Win7 x64 Machine
+#### Only with Stock MSVS 2013 Community Version
+
+```bash
+*npm install node-gyp -g
+
+# perhaps unnecessary
+*npm config set msvs_version 2013 --global
+npm get msvs_version
+npm config list
+```
+
+```
+set PYTHON=f:\prog\py27\python.exe
+*set GYP_MSVS_VERSION=2013
+```
+
+.center[nodevars]
+
+]]
+.column_t2[.vmiddle[
+
+```
+{
+  ...
+* 'target_defaults': {
+     ...
+*    'configurations': {
+        ...
+*       'Release': {
+*         'conditions': |
+            |'target_arch=="x64"', {
+              'msvs_configuration_platform': 'x64',
+*             'msbuild_toolset': 'v120_xp'            
+            }|,
+        }
+     }
+  }
+}
+```
+.center[~/.node-gyp/5.2.0/include/node/**common.gypi**]
+
+.center[
+Ref: [NPM native builds ... @ Stack Overflow](http://stackoverflow.com/questions/20051318/npm-native-builds-with-only-visual-studio-2013-installed)
+]
+
+]]
+
+---
+class: split-50 nopadding 
+
+.column_t2[.vmiddle[
+
+.figstyle1[
+![](images/fig06.jpg)
+]
+
+]]
+.column_t1[.vmiddle[
+# Example #4
+### Maven
+
+```bash
+# if something wrong happens
+npm install && bower install
+
+# equivalent for mvn spring-boot:run
+*$> mvn
+
+# localhost:8080
+```
+
+]]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig07.jpg)
+]
+
+.center[Sign-In | Public]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig08.jpg)
+]
+
+.center[Landing | User: admin]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig09.jpg)
+]
+
+.center[User Management]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig10.jpg)
+]
+
+.center[Metrics]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig11.jpg)
+]
+
+.center[Configuration]
+
+---
+class: column_t1 middle 
+
+.figstyle1[
+![](images/fig12.jpg)
+]
+
+.center[API]
+
+---
+class: split-70 nopadding 
+
+.column_t1[.vmiddle[
+
+.figstyle1[
+![](images/fig13.jpg)
+]
+
+]]
+.column_t2[.vmiddle[
+## Database (H2)
+
+]]
+
+---
+
+# References
+
+1. [Spring Boot](http://projects.spring.io/spring-boot/)
+1. [Spring Guides](https://github.com/spring-guides)
+1. [spring-boot/spring-boot-samples](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples)
+1. [Getting Started · Building Java Projects with **Maven**](http://spring.io/guides/gs/maven/)
+1. [Getting Started · Building Java Projects with **Gradle**](http://spring.io/guides/gs/gradle/)
+1. [The JHipster Mini-Book - infoq](http://www.infoq.com/minibooks/jhipster-mini-book)
+1. [The JHipster Mini-Book - Site](http://www.jhipster-book.com/)
+1. [Starting a modern Java project with JHipster](https://www.drissamri.be/blog/technology/starting-modern-java-project-with-jhipster/)
+1. [Getting Started with JHipster, AngularJS and Paymill](http://www.indivon.de/blog/getting-started-jhipster-spring-boot-angularjs-paymill/)
+
+---
+class: split-30 nopadding
+background-image: url(https://cloud.githubusercontent.com/assets/4231611/11022953/9d608066-869e-11e5-846e-d6a8febc17dd.jpg)
+
+.column_t2.center[.vmiddle[
+.fgtransparent[
+# .fa-2x[<i class="icon-java-bold fa-3x"></i>]
+]
+]]
+.column_t2[.vmiddle.nopadding[
+.shadelight[.boxtitle1[
+# END
+
+### [Eueung Mulyana](https://github.com/eueung)
+### http://eueung.github.io/java/springboot
+#### Java CodeLabs | [Attribution-ShareAlike CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+#### 
+]]
+]]
+
+
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-0.12.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({highlightLanguage:'java', highlightStyle: 'tomorrow', highlightLines: true});
+    </script>
+  </body>
+</html>
