@@ -1,2 +1,3 @@
-# java
-Java Stuff
+# Java Notes & CodeLabs
+- [Spring Boot & JHipster](http://eueung.github.io/java/springboot) | [PDF](https://speakerdeck.com/eueung/spring-boot-and-jhipster)
+- ...
